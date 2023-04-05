@@ -1,0 +1,28 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Редактировать Таск</h2>
+
+  <mat-form-field>
+    <mat-label>title</mat-label>
+    <input type="text" matInput />
+  </mat-form-field>
+  <br />
+
+  <mat-form-field>
+    <mat-label>descripton</mat-label>
+    <input type="text" matInput />
+  </mat-form-field>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" [mat-dialog-close]="task">
+      Save
+    </button>
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</div>
+
+<p>
+  {{ task.title }}
+</p>
+<p>
+  {{ task.description }}
+</p>
