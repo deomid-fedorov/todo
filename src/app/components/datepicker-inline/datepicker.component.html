@@ -2,7 +2,9 @@
   <mat-calendar
     [(selected)]="selectedDate"
     (click)="onPickDate.emit(selectedDate.toDateString())"
+    #picker
   ></mat-calendar>
 </mat-card>
-<!-- <p>Selected date: {{ selected }}</p> -->
-<!-- <p>Tasks Count: {{ tasksCount }}</p> -->
+<br />
+<br />
+<button mat-raised-button color="primary">Добавить</button>

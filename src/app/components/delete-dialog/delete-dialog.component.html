@@ -1,0 +1,10 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Удалить Таск "{{ task.title }}"?</h2>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" [mat-dialog-close]="task">
+      Delete
+    </button>
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</div>
