@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { Task } from '../../../models';
-import { MatInput } from '@angular/material/input';
-import { MatFormField } from '@angular/material/form-field';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'edit-dialog',
@@ -9,5 +8,8 @@ import { MatFormField } from '@angular/material/form-field';
   styleUrls: ['./edit-dialog.component.scss'],
 })
 export class EditDialogComponent {
-  @Input() task: Task;
+  constructor(
+    public dialogRef: MatDialogRef<EditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public task: Task
+  ) {}
 }

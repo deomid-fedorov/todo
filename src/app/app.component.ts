@@ -12,6 +12,8 @@ import { Task } from '../models';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  tasks: Task[];
+
   constructor(public dialog: MatDialog, private http: HttpClient) {}
   requestDateTasks(date: string) {
     let tasks: Task[] = [];
@@ -26,42 +28,7 @@ export class AppComponent {
   }
 
   printDateTasks(date: string) {
-    let tasks = this.requestDateTasks(date);
-    console.log(tasks);
+    this.tasks = this.requestDateTasks(date);
+    console.log(this.tasks);
   }
-
-  // response: any;
-  // sendRequest() {
-  //   let date = this.selected.toDateString();
-  //   this.http
-  //     .get('http://localhost:3000/posts' + '?date=' + date)
-  //     .subscribe((response) => {
-  //       this.response = response;
-  //       let posts: Task[] = this.response;
-  //       this.tasks = [];
-  //       for (let post of posts) {
-  //         this.postsCount = posts.length;
-  //         this.tasks.push(post);
-  //       }
-  //       this.datePickEvent.emit(this.tasks);
-  //     });
-  // }
-
-  // @Input() tasks: Task[];
-  // @Input() task: Task;
-  // constructor(public dialog: MatDialog, private http: HttpClient) {}
-  // onTaskEdit(task: object) {
-  //   console.log(task);
-  //   let dialogRef = this.dialog.open(EditDialogComponent);
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (!!result) {
-  //       console.log(this.task.title);
-  //       console.log(this.task.description);
-  //     }
-  //   });
-  // }
-  // ngOnInit() {
-  //   console.log('HELLO');
-  //   console.log(this.tasks);
-  // }
 }

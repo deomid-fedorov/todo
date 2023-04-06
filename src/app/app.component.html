@@ -1,4 +1,4 @@
-<datepicker-inline-component (onPickDate)="printDateTasks($event)">
-</datepicker-inline-component>
+<datepicker-component (onPickDate)="printDateTasks($event)">
+</datepicker-component>
 
-<tasks-section> </tasks-section>
+<tasks-section [tasks]="tasks"> </tasks-section>

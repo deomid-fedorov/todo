@@ -3,13 +3,13 @@
 
   <mat-form-field>
     <mat-label>title</mat-label>
-    <input type="text" matInput />
+    <input type="text" matInput [(ngModel)]="task.title" />
   </mat-form-field>
   <br />
 
   <mat-form-field>
     <mat-label>descripton</mat-label>
-    <input type="text" matInput />
+    <input type="text" matInput [(ngModel)]="task.description" />
   </mat-form-field>
 
   <mat-dialog-actions>

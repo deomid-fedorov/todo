@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
-import { DatepickerInlineComponent } from './components/datepicker-inline/datepicker-inline.component';
+import { DatepickerInlineComponent } from './components/datepicker-inline/datepicker.component';
 import { TasksSectionComponent } from './components/tasks-section/tasks-section.component';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import { TaskComponent } from './task/task.component';
