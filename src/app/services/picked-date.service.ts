@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-
 @Injectable({
   providedIn: 'root',
 })
 export class PickedDateService {
-  pickedDate: string = new Date().toDateString();
+  pickedDate: Date = new Date();
 
-  setDate(date: string) {
+  setDate(date: Date) {
     this.pickedDate = date;
+    console.log('сохранено,');
+    console.log(this.pickedDate);
   }
 
-  getDate() {}
+  getDate() {
+    return this.pickedDate;
+  }
 }

@@ -1,10 +1,11 @@
 <mat-card class="demo-inline-calendar-card">
   <mat-calendar
     [(selected)]="selectedDate"
-    (click)="onPickDate.emit(selectedDate.toDateString())"
-    #picker
+    (selectedChange)="onDatePicked()"
   ></mat-calendar>
 </mat-card>
 <br />
 <br />
-<button mat-raised-button color="primary">Добавить</button>
+<button mat-raised-button color="primary" (click)="showAddDialog()">
+  Добавить
+</button>

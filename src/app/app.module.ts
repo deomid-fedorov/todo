@@ -17,7 +17,7 @@ import { TaskComponent } from './components/task/task.component';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
-import { RequestService } from './services/request.service';
+// import { RequestService } from './services/request.service';
 
 @NgModule({
   declarations: [

@@ -5,6 +5,8 @@ import { Task } from 'src/models';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
+import { RequestService } from 'src/app/services/request.service';
+
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -13,7 +15,11 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 export class TaskComponent {
   @Input() task: Task;
 
-  constructor(public dialog: MatDialog, private http: HttpClient) {}
+  constructor(
+    public dialog: MatDialog,
+    private http: HttpClient,
+    private RequestService: RequestService
+  ) {}
 
   sendPutRequest(task: Task) {
     this.http
@@ -25,6 +31,7 @@ export class TaskComponent {
       })
       .subscribe((response: any) => {
         if (!!response) {
+          this.RequestService.requestDateTasks(this.task.date);
           console.log('successful put request');
         } else {
           console.log('unsucces put request');
@@ -36,6 +43,7 @@ export class TaskComponent {
       .delete(`http://localhost:3000/tasks/${task.id}`)
       .subscribe((response: any) => {
         if (!!response) {
+          this.RequestService.requestDateTasks(this.task.date);
           console.log('successful put request');
         } else {
           console.log('unsucces put request');
@@ -54,6 +62,7 @@ export class TaskComponent {
     });
     dialogRef.afterClosed().subscribe((task) => {
       if (!!task) {
+        this.RequestService.requestDateTasks(this.task.date);
         this.sendPutRequest(task);
       }
     });

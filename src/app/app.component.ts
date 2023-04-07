@@ -11,15 +11,7 @@ import { RequestService } from './services/request.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  tasks: Task[];
+  // tasks: Task[];
 
-  constructor(
-    public dialog: MatDialog,
-    private RequestService: RequestService
-  ) {}
-
-  printDateTasks(date: string) {
-    this.tasks = this.RequestService.requestDateTasks(date);
-    console.log(this.tasks);
-  }
+  constructor(public dialog: MatDialog) {}
 }

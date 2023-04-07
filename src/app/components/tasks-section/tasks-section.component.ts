@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Task } from 'src/models';
+import { RequestService } from 'src/app/services/request.service';
 
 @Component({
   selector: 'tasks-section',
@@ -7,5 +7,6 @@ import { Task } from 'src/models';
   styleUrls: ['./tasks-section.component.scss'],
 })
 export class TasksSectionComponent {
-  @Input() tasks: Task[];
+  constructor(private taskService: RequestService) {}
+  tasks$ = this.taskService.tasks$;
 }
