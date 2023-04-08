@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { Task } from 'src/models';
+
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
-import { RequestService } from 'src/app/services/request.service';
+import { CrudRequestsService } from 'src/app/services/crud-requests.service';
 
 @Component({
   selector: 'app-task',
@@ -17,39 +17,8 @@ export class TaskComponent {
 
   constructor(
     public dialog: MatDialog,
-    private http: HttpClient,
-    private RequestService: RequestService
+    private CrudRequestsService: CrudRequestsService
   ) {}
-
-  sendPutRequest(task: Task) {
-    this.http
-      .put(`http://localhost:3000/tasks/${task.id}`, {
-        title: task.title,
-        description: task.description,
-        date: task.date,
-        id: task.id,
-      })
-      .subscribe((response: any) => {
-        if (!!response) {
-          this.RequestService.requestDateTasks(this.task.date);
-          console.log('successful put request');
-        } else {
-          console.log('unsucces put request');
-        }
-      });
-  }
-  sendDeleteRequest(task: Task) {
-    this.http
-      .delete(`http://localhost:3000/tasks/${task.id}`)
-      .subscribe((response: any) => {
-        if (!!response) {
-          this.RequestService.requestDateTasks(this.task.date);
-          console.log('successful put request');
-        } else {
-          console.log('unsucces put request');
-        }
-      });
-  }
 
   showEditDialog(task: Task) {
     let dialogRef = this.dialog.open(EditDialogComponent, {
@@ -62,8 +31,8 @@ export class TaskComponent {
     });
     dialogRef.afterClosed().subscribe((task) => {
       if (!!task) {
-        this.RequestService.requestDateTasks(this.task.date);
-        this.sendPutRequest(task);
+        // this.GetRequestService.requestDateTasks(this.task.date);
+        this.CrudRequestsService.sendPutRequest(task);
       }
     });
   }
@@ -78,7 +47,7 @@ export class TaskComponent {
     });
     dialogRef.afterClosed().subscribe((task) => {
       if (!!task) {
-        this.sendDeleteRequest(task);
+        this.CrudRequestsService.sendDeleteRequest(task);
       }
     });
   }

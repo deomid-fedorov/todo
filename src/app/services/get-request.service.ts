@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class RequestService {
+export class GetRequestService {
   constructor(private http: HttpClient) {}
 
   tasks$ = new BehaviorSubject([]);

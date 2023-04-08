@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from 'src/app/services/request.service';
+import { GetRequestService } from 'src/app/services/get-request.service';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
@@ -9,21 +9,21 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'datepicker.component.html',
   styleUrls: ['datepicker.component.scss'],
 })
-export class DatepickerInlineComponent implements OnInit {
+export class DatepickerComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
-    private RequestService: RequestService,
+    private GetRequestService: GetRequestService,
     private http: HttpClient
   ) {}
 
   selectedDate: Date = new Date();
 
   onDatePicked() {
-    this.RequestService.requestDateTasks(this.selectedDate.toDateString());
+    this.GetRequestService.requestDateTasks(this.selectedDate.toDateString());
   }
 
   ngOnInit(): void {
-    this.RequestService.requestDateTasks(this.selectedDate.toDateString());
+    this.GetRequestService.requestDateTasks(this.selectedDate.toDateString());
   }
 
   sendAddRequest(task: any) {
@@ -35,7 +35,7 @@ export class DatepickerInlineComponent implements OnInit {
       })
       .subscribe((response: any) => {
         if (!!response) {
-          this.RequestService.requestDateTasks(
+          this.GetRequestService.requestDateTasks(
             this.selectedDate.toDateString()
           );
           console.log('successful put request');
