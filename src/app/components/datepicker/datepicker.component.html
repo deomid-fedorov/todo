@@ -2,7 +2,8 @@
   <mat-calendar
     [(selected)]="selectedDate"
     (selectedChange)="onDatePicked()"
-  ></mat-calendar>
+    [dateClass]="dateClasss.bind(this)"
+  />
 </mat-card>
 <br />
 <br />

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { GetRequestService } from 'src/app/services/get-request.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+// import { MatNativeDateModule } from '@angular/material/datepicker';
+import { CrudRequestsService } from 'src/app/services/crud-requests.service';
 
 @Component({
   selector: 'datepicker-component',
@@ -12,37 +13,18 @@ import { HttpClient } from '@angular/common/http';
 export class DatepickerComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
-    private GetRequestService: GetRequestService,
+    private CrudRequestsService: CrudRequestsService,
     private http: HttpClient
   ) {}
 
-  selectedDate: Date = new Date();
+  selectedDate: any = new Date();
 
   onDatePicked() {
-    this.GetRequestService.requestDateTasks(this.selectedDate.toDateString());
+    this.CrudRequestsService.requestDateTasks(this.selectedDate.toDateString());
   }
 
   ngOnInit(): void {
-    this.GetRequestService.requestDateTasks(this.selectedDate.toDateString());
-  }
-
-  sendAddRequest(task: any) {
-    this.http
-      .post(`http://localhost:3000/tasks/`, {
-        title: task.title,
-        description: task.description,
-        date: task.date,
-      })
-      .subscribe((response: any) => {
-        if (!!response) {
-          this.GetRequestService.requestDateTasks(
-            this.selectedDate.toDateString()
-          );
-          console.log('successful put request');
-        } else {
-          console.log('unsucces put request');
-        }
-      });
+    this.CrudRequestsService.requestDateTasks(this.selectedDate.toDateString());
   }
 
   showAddDialog() {
@@ -55,8 +37,12 @@ export class DatepickerComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((task) => {
       if (!!task) {
-        this.sendAddRequest(task);
+        this.CrudRequestsService.sendAddRequest(task);
       }
     });
+  }
+
+  dateClasss(date: Date) {
+    return 'test';
   }
 }

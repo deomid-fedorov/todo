@@ -16,7 +16,7 @@ export class TaskComponent {
   @Input() task: Task;
 
   constructor(
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private CrudRequestsService: CrudRequestsService
   ) {}
 
@@ -31,7 +31,6 @@ export class TaskComponent {
     });
     dialogRef.afterClosed().subscribe((task) => {
       if (!!task) {
-        // this.GetRequestService.requestDateTasks(this.task.date);
         this.CrudRequestsService.sendPutRequest(task);
       }
     });
